@@ -851,6 +851,7 @@ body {
 
   .contact-container {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
 
   .product-grid {
@@ -884,6 +885,10 @@ body {
 
   .product-grid {
     grid-template-columns: 1fr;
+  }
+
+  .contact-container {
+    gap: 24px;
   }
 
   .contact-info-card,
