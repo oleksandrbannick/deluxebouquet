@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="header-content">
       <div class="brand">
         <h1>Deluxe Bouquet</h1>
@@ -26,7 +26,9 @@
 
   <div id="preview-banner" class="preview-banner" role="status" aria-live="polite" hidden>Preview mode: Firebase not configured or empty — showing sample products.</div>
 
-  <section class="hero">
+  <div class="header-spacer" id="header-spacer"></div>
+
+  <section class="hero" id="hero-section">
     <div class="decorative-circle circle-1"></div>
     <div class="decorative-circle circle-2"></div>
     <div class="floating-flower flower-1">🌺</div>
@@ -41,7 +43,7 @@
   </section>
 
   <main>
-    <section class="featured-section">
+    <section class="featured-section reveal">
       <div class="decorative-leaf leaf-1">🌿</div>
       <div class="decorative-leaf leaf-2">🍃</div>
       <div class="floating-flower catalog-flower-1">🌹</div>
@@ -58,7 +60,7 @@
       </div>
     </section>
 
-    <section id="catalog" class="catalog-section" style="display: none;" aria-labelledby="catalog-heading">
+    <section id="catalog" class="catalog-section reveal" style="display: none;" aria-labelledby="catalog-heading">
       <div class="container">
         <div class="section-header">
           <h2 id="catalog-heading" class="section-title">Complete Collection</h2>
@@ -71,7 +73,51 @@
       </div>
     </section>
 
-    <section id="contact" class="contact-section" aria-labelledby="contact-heading">
+    <section class="testimonials-section reveal" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="testimonials-heading" class="section-title">What Our Customers Say</h2>
+          <p class="section-subtitle">We love making people smile with beautiful flowers</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card reveal-left">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">The bouquet I ordered for my mother's birthday was absolutely stunning. She was so moved she cried happy tears! The flowers were fresh and the arrangement was gorgeous.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">S</div>
+              <div>
+                <div class="testimonial-name">Sarah M.</div>
+                <div class="testimonial-detail">Birthday bouquet</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card reveal">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">I've ordered from Deluxe Bouquet three times now and every arrangement has been unique and beautiful. The personal touch really shows. Highly recommend!</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">J</div>
+              <div>
+                <div class="testimonial-name">James K.</div>
+                <div class="testimonial-detail">Repeat customer</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card reveal-right">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">Used Deluxe Bouquet for our wedding centerpieces. They exceeded every expectation. The flowers were fresh, vibrant, and perfectly matched our color palette.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">E</div>
+              <div>
+                <div class="testimonial-name">Emily R.</div>
+                <div class="testimonial-detail">Wedding flowers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section reveal" aria-labelledby="contact-heading">
       <div class="container">
         <div class="section-header">
           <h2 id="contact-heading" class="section-title">Get In Touch</h2>
@@ -134,6 +180,16 @@
       <a href="admin/login.html">Admin</a>
     </div>
   </footer>
+
+  <!-- Back-to-top button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">&#9650;</button>
+
+  <!-- Image Lightbox -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <img src="" alt="">
+    <div class="lightbox-caption"></div>
+  </div>
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>

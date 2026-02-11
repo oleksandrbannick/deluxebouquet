@@ -7,6 +7,22 @@ const container = document.getElementById('product-grid');
 const featuredContainer = document.getElementById('featured-grid');
 let publicUnsubscribe = null;
 
+// Show shimmer loading placeholders
+function showShimmerPlaceholders(target, count) {
+  if (!target) return;
+  target.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const card = document.createElement('div');
+    card.className = 'shimmer-card';
+    card.innerHTML = '<div class="shimmer-img"></div><div class="shimmer-text"><div class="shimmer-line"></div><div class="shimmer-line short"></div><div class="shimmer-line price"></div></div>';
+    target.appendChild(card);
+  }
+}
+
+// Show shimmers immediately
+showShimmerPlaceholders(featuredContainer, 4);
+showShimmerPlaceholders(container, 6);
+
 // Emulator connections are disabled so public site uses the live Firebase project by default.
 // To test locally with emulators, start them and uncomment the block below.
 /*
