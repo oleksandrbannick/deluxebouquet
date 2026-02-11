@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Deluxe Bouquet — Admin Login</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Admin Login</h1>
+    <form id="login-form">
+      <label>Email <input id="email" type="email" required></label>
+      <label>Password <input id="password" type="password" required></label>
+      <button type="submit">Sign In</button>
+    </form>
+    <p id="message"></p>
+    <p>Need an account? Create one and then ask the developer to add your UID to the <code>admins</code> collection. <a href="onboarding.html">Need help? See the onboarding guide.</a></p>
+  </main>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    // Basic auth flow (email/password). After sign-in, redirect to admin dashboard.
+    if (!window.firebaseConfig || !window.firebaseConfig.projectId) {
+      document.getElementById('message').textContent = 'Missing Firebase config. Add your config to /admin/firebase-config.js';
+      throw new Error('Missing Firebase config (admin/firebase-config.js)');
+    }
+    const app = firebase.initializeApp(window.firebaseConfig);
+    const auth = firebase.auth();
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+        window.location.href = 'index.html';
+      } catch (err) {
+        document.getElementById('message').textContent = err.message;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Small Mixed Bouquet",
+    "description": "A cheerful small bouquet of seasonal flowers",
+    "price_cents": 3500,
+    "inventory": 10,
+    "images": []
+  },
+  {
+    "title": "Large Roses Bouquet",
+    "description": "Classic red roses arranged elegantly",
+    "price_cents": 6500,
+    "inventory": 5,
+    "images": []
+  }
+]

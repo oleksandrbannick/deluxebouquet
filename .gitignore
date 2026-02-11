@@ -1,0 +1,8 @@
+# Ignore local sensitive config
+/admin/firebase-config.js
+
+# macOS
+.DS_Store
+
+# Node (if used later)
+node_modules/

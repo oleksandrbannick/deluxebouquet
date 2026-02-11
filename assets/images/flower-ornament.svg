@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#f7d3e9" />
+      <stop offset="1" stop-color="#ffd9b2" />
+    </linearGradient>
+  </defs>
+  <rect fill="none" width="600" height="600" />
+  <g transform="translate(300 300)">
+    <g opacity="0.95" transform="scale(0.9)">
+      <path d="M0-130c45 0 88 26 110 64 22 38 16 86-15 125-31 39-85 61-129 61s-98-22-129-61c-31-39-37-87-15-125 22-38 65-64 110-64z" fill="url(#g1)"/>
+      <g transform="translate(-6 20)">
+        <path d="M-60 -24c18-12 38-18 58-18s40 6 58 18" stroke="#b05a86" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M-70 8c24-12 48-18 70-18s46 6 70 18" stroke="#b05a86" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9"/>
+      </g>
+      <g transform="translate(80 -80) rotate(20)">
+        <ellipse rx="22" ry="12" fill="#fff" opacity="0.6" />
+      </g>
+      <g transform="translate(-120 -80) rotate(-25)">
+        <ellipse rx="22" ry="12" fill="#fff" opacity="0.6" />
+      </g>
+      <g transform="translate(0 120)">
+        <path d="M-90 0c20 26 44 42 90 42s70-16 90-42" stroke="#e893c9" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+      </g>
+    </g>
+  </g>
+</svg>

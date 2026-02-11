@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Deluxe Bouquet — Updating the Catalog</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="container">
+    <h1>Updating the Catalog</h1>
+    <nav><a href="index.html">Back to Catalog</a></nav>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Welcome 👋</h2>
+      <p>This short guide will help you create an admin account, configure Firebase settings, and add products (including images) using the admin dashboard.</p>
+    </section>
+
+    <section>
+      <h2>Step 1 — Add your Firebase config</h2>
+      <ol>
+        <li>Open the Firebase Console and go to Project Settings → Your apps. Copy the web app config.</li>
+        <li>Open <code>admin/firebase-config.js</code> (or <code>firebase-config.js</code> inside the admin folder) and paste the config as <code>window.firebaseConfig = { ... }</code>. <strong>Do not</strong> commit secrets to a public repo.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Step 2 — Create an account</h2>
+      <ol>
+        <li>Open <a href="login.html">/admin/login.html</a> and use the form to create a new account (email &amp; password).</li>
+        <li>After signing up, you will be signed in automatically and redirected to the admin dashboard.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Step 3 — Add your user as an Admin (one-time)</h2>
+      <p>Only users with a document in the <code>admins</code> collection can manage products.</p>
+      <ol>
+        <li>Have your manager (Nataliya) create an account via the <a href="login.html">Admin login</a> form (email &amp; password).</li>
+        <li>Open Firebase Console → Authentication → click the newly created user → copy the <strong>UID</strong>.</li>
+        <li>Open Firestore in Firebase Console, create a collection named <code>admins</code> and add a document with the document ID = the copied UID. You can leave the document empty or add a field like <code>role: 'owner'</code>.</li>
+      </ol>
+      <p class="muted">If you see a message "Your account is not an admin" in the dashboard, it means your UID is not in the <code>admins</code> collection yet. Once you paste the UID here (or tell me the UID), I can provide the exact Console steps or add it for you if you prefer.</p>
+      <p class="muted">Note: I added your Firebase config file to <code>/admin/firebase-config.js</code>. I also included a <code>.gitignore</code> entry to prevent committing it. I noticed your <code>storageBucket</code> value is "<code>deluxebouquet-a76c7.firebasestorage.app</code>" — if image uploads fail, change it to the typical form: <code>deluxebouquet-a76c7.appspot.com</code>.</p>
+    </section>
+
+    <section>
+      <h2>Step 4 — Rules &amp; Security</h2>
+      <p>Copy the files <code>firestore.rules</code> and <code>storage.rules</code> from the project and paste them into the corresponding Rules editors in Firebase Console (Firestore &amp; Storage). This helps prevent unauthorized writes.</p>
+    </section>
+
+    <section>
+      <h2>Step 5 — Add products</h2>
+      <ol>
+        <li>In the admin dashboard, use the <em>Create / Edit Product</em> form to enter title, price, description, inventory and upload an image.</li>
+        <li>Images are uploaded to Firebase Storage and their public URLs are saved on the product record.</li>
+      </ol>
+      <p class="muted">Deleted products are moved to <strong>Trash</strong> (Archive). Items in Trash are kept for 7 days and then permanently removed automatically. Use the Trash view to <em>Restore</em> or <em>Permanently Delete</em> items before they are purged.</p>
+      <p class="muted">Tip: Images are automatically optimized client-side (converted to WebP/resized) before upload to preserve quality while saving space. The upload limit is increased to 10 MB to allow high-quality originals if needed.</p>
+    </section>
+
+    <section>
+      <h2>Troubleshooting</h2>
+      <ul>
+        <li><strong>Not an admin</strong>: Make sure your UID is in the <code>admins</code> collection.</li>
+        <li><strong>Image upload fails</strong>: Check Storage rules and ensure your Firebase config includes the right project.</li>
+        <li><strong>Products don't show</strong>: Confirm documents are in <code>products</code> collection and have <code>inventory &gt; 0</code>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Need help?</h2>
+      <p>If you'd like I can help complete the Firebase setup (add your UID to <code>admins</code>, paste the Firebase config, and verify rules). Just tell me when you're ready and I can either guide you step-by-step or apply the changes.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <p class="muted">Deluxe Bouquet — Updating the Catalog</p>
+  </footer>
+</body>
+</html>

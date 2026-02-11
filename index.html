@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Deluxe Bouquet — Fresh Flowers Delivered</title>
+  <meta name="description" content="Handmade bouquets and flower arrangements. Order online or request pickup.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <div class="brand">
+        <h1>Deluxe Bouquet</h1>
+        <p class="tag">Handmade seasonal bouquets</p>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#catalog">Catalog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="preview-banner" class="preview-banner" role="status" aria-live="polite" hidden>Preview mode: Firebase not configured or empty — showing sample products.</div>
+
+  <section class="hero">
+    <div class="decorative-circle circle-1"></div>
+    <div class="decorative-circle circle-2"></div>
+    <div class="floating-flower flower-1">🌺</div>
+    <div class="floating-flower flower-2">🌸</div>
+    <div class="floating-flower flower-3">💐</div>
+    <div class="hero-content container">
+      <div class="hero-text">
+        <h2 class="hero-title">Beautiful Blooms,<br>Handcrafted Just For You</h2>
+        <p class="hero-subtitle">Artisan floral arrangements made with fresh, seasonal flowers. Local delivery and custom orders available.</p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="featured-section">
+      <div class="decorative-leaf leaf-1">🌿</div>
+      <div class="decorative-leaf leaf-2">🍃</div>
+      <div class="floating-flower catalog-flower-1">🌹</div>
+      <div class="floating-flower catalog-flower-2">🌻</div>
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Featured Arrangements</h2>
+          <p class="section-subtitle">Discover our handpicked selection of seasonal bouquets</p>
+        </div>
+        <div id="featured-grid" class="product-grid featured-preview" aria-live="polite"></div>
+        <div class="catalog-actions">
+          <button id="view-all-btn" class="btn btn-primary btn-large">View Full Catalog</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog" class="catalog-section" style="display: none;" aria-labelledby="catalog-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="catalog-heading" class="section-title">Complete Collection</h2>
+          <p class="section-subtitle">Browse all available arrangements. Click "Request Order" to place your custom order.</p>
+        </div>
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+        <div class="catalog-actions">
+          <button id="show-less-btn" class="btn btn-secondary">Show Less</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="contact-heading" class="section-title">Get In Touch</h2>
+          <p class="section-subtitle">Have questions or want to place a custom order? We'd love to hear from you.</p>
+        </div>
+        <div class="contact-container">
+          <div class="contact-info-card">
+            <h3>Contact Information</h3>
+            <div class="info-item">
+              <svg class="info-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2.5 6.25L10 11.25L17.5 6.25M3.75 15H16.25C17.2165 15 18 14.2165 18 13.25V6.75C18 5.7835 17.2165 5 16.25 5H3.75C2.7835 5 2 5.7835 2 6.75V13.25C2 14.2165 2.7835 15 3.75 15Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div>
+                <strong>Email</strong>
+                <p><a href="mailto:nataliya.bannick@hotmail.com">nataliya.bannick@hotmail.com</a></p>
+              </div>
+              <button class="copy-btn" data-copy="nataliya.bannick@hotmail.com" aria-label="Copy email">Copy</button>
+            </div>
+            <div class="info-item">
+              <svg class="info-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2.5 5.83333C2.5 4.91286 3.24619 4.16667 4.16667 4.16667H6.10559C6.48731 4.16667 6.82826 4.41986 6.95642 4.78559L7.98809 7.71142C8.13583 8.12667 7.97446 8.58823 7.60782 8.82748L6.25 9.79167C6.25 9.79167 7.08333 12.5 9.79167 13.75L10.7558 12.3922C10.9951 12.0255 11.4567 11.8642 11.8719 12.0119L14.7977 13.0436C15.1635 13.1717 15.4167 13.5127 15.4167 13.8944V15.8333C15.4167 16.7538 14.6705 17.5 13.75 17.5H12.9167C7.16294 17.5 2.5 12.8371 2.5 7.08333V5.83333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div>
+                <strong>Phone</strong>
+                <p><a href="tel:+18016345155">+1 (801) 634-5155</a></p>
+              </div>
+              <button class="copy-btn" data-copy="+18016345155" aria-label="Copy phone">Copy</button>
+            </div>
+            <div class="info-item">
+              <svg class="info-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17.5 8.33333C17.5 13.75 10 18.3333 10 18.3333C10 18.3333 2.5 13.75 2.5 8.33333C2.5 6.34421 3.29018 4.43655 4.6967 3.03002C6.10322 1.62349 8.01088 0.833334 10 0.833334C11.9891 0.833334 13.8968 1.62349 15.3033 3.03002C16.7098 4.43655 17.5 6.34421 17.5 8.33333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 10.8333C11.3807 10.8333 12.5 9.71405 12.5 8.33333C12.5 6.95262 11.3807 5.83333 10 5.83333C8.61929 5.83333 7.5 6.95262 7.5 8.33333C7.5 9.71405 8.61929 10.8333 10 10.8333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div>
+                <strong>In-Person Pickup</strong>
+                <p>Request in-person pickup via email or phone</p>
+              </div>
+            </div>
+            <div class="contact-note">
+              <p>We typically respond within one business day</p>
+            </div>
+          </div>
+          <form id="contact-form" class="contact-form" aria-label="Contact form">
+            <div class="form-group">
+              <label for="contact-name">Your Name</label>
+              <input id="contact-name" type="text" placeholder="Jane Smith" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email Address</label>
+              <input id="contact-email" type="email" placeholder="jane@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" rows="5" placeholder="Tell us about your flower needs..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-large">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <p>&copy; Deluxe Bouquet — Fresh flowers delivered</p>
+    <button id="admin-toggle" class="admin-toggle" aria-expanded="false" aria-controls="admin-link" title="Admin">⚙</button>
+    <div id="admin-link" class="admin-link" hidden>
+      <a href="admin/login.html">Admin</a>
+    </div>
+  </footer>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+  <script src="admin/firebase-config.js"></script>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/contact.js"></script>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

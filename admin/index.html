@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Deluxe Bouquet — Admin</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="admin-header container">
+    <div class="brand">
+      <h1>Catalog Manager</h1>
+      <p class="muted">Add and manage your beautiful floral arrangements</p>
+    </div>
+    <nav class="admin-nav">
+      <a href="../index.html" class="btn btn-back">← Back to Website</a>
+      <a href="onboarding.html">Guide</a>
+      <button id="signout-btn" class="btn">Sign Out</button>
+    </nav>
+  </header>
+
+  <main class="container admin-grid">
+    <aside class="admin-panel">
+      <h2>Create / Edit Product</h2>
+      <form id="product-form" class="panel">
+        <input id="product-id" type="hidden">
+        <label>Title <input id="title" required></label>
+        <label>Price (USD) <input id="price" type="number" step="0.01" required></label>
+        <label>Description <textarea id="description"></textarea></label>
+        <label>Image <input id="image" type="file" accept="image/*"></label>
+        <div class="image-preview"><img id="image-preview" alt="Preview" hidden></div>
+        <label>Inventory <input id="inventory" type="number" value="1"></label>
+        <button type="submit" class="btn btn-primary" id="save-btn">Save Product</button>
+        <div id="save-message" class="muted small" aria-live="polite"></div>
+      </form>
+      <p class="muted small">Tip: keep images under 2 MB. Uploaded images will appear in the public catalog after saving.</p>
+    </aside>
+
+    <section class="admin-products">
+      <h2>Existing Products</h2>
+      <div class="admin-list-controls">
+        <label><input id="show-archived" type="checkbox"> Show archived products (Trash)</label>
+      </div>
+      <div id="products-list" class="products-list"></div>
+
+      <div id="archived-section" hidden>
+        <h3>Trash — Archived Products</h3>
+        <div id="archived-list" class="products-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="products.js"></script>
+</body>
+</html>
