@@ -3,10 +3,11 @@ if (!window.firebaseConfig || !window.firebaseConfig.projectId) {
   alert('Firebase configuration missing. Please add your config to /admin/firebase-config.js');
   throw new Error('Missing Firebase config (admin/firebase-config.js)');
 }
-const app = firebase.initializeApp(window.firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-const storage = firebase.storage();
+
+const app = firebase.apps && firebase.apps.length ? firebase.app() : firebase.initializeApp(window.firebaseConfig);
+const auth = app.auth();
+const db = app.firestore();
+const storage = app.storage();
 
 // Emulator connections are disabled so this site uses the live Firebase project by default.
 // To test locally with emulators, start the emulators and uncomment the lines below.
@@ -208,7 +209,15 @@ document.getElementById('product-form').addEventListener('submit', async (e) => 
     setTimeout(() => { if (saveMsg) saveMsg.textContent = ''; }, 3000);
   } catch (err) {
     console.error('Failed to save product:', err);
-    if (saveMsg) saveMsg.textContent = 'Failed to save product: ' + (err.message || err);
+    let errorMsg = 'Failed to save product: ';
+    if (err.code === 'permission-denied') {
+      errorMsg += 'Permission denied. Make sure you are logged in as an admin.';
+    } else if (err.code === 'storage/unauthorized') {
+      errorMsg += 'Storage permission denied. Check Firebase Storage rules.';
+    } else {
+      errorMsg += (err.message || err);
+    }
+    if (saveMsg) saveMsg.textContent = errorMsg;
   } finally {
     if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Save Product'; }
   }
@@ -286,7 +295,10 @@ document.getElementById('products-list').addEventListener('click', async (e) => 
       });
     }
   }
+});
 
+// Delegate restore/purge buttons for archived list
+document.getElementById('archived-list').addEventListener('click', async (e) => {
   // Restore archived product
   if (e.target.classList.contains('restore')) {
     const id = e.target.dataset.id;
@@ -329,5 +341,21 @@ if (signoutBtn) {
   signoutBtn.addEventListener('click', async () => {
     await auth.signOut();
     window.location.href = 'login.html';
+  });
+}
+
+// Toggle archived products view
+const showArchivedCheckbox = document.getElementById('show-archived');
+if (showArchivedCheckbox) {
+  showArchivedCheckbox.addEventListener('change', (e) => {
+    const archivedSection = document.getElementById('archived-section');
+    if (archivedSection) {
+      archivedSection.hidden = !e.target.checked;
+      if (e.target.checked) {
+        attachArchivedListener();
+      } else if (archivedUnsubscribe) {
+        archivedUnsubscribe();
+      }
+    }
   });
 }

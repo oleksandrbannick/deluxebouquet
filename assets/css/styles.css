@@ -30,6 +30,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -38,6 +39,7 @@ body {
   color: var(--text-primary);
   background: linear-gradient(180deg, #ffffff 0%, #fef9fb 100%);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .container {
@@ -604,11 +606,10 @@ body {
 
 .contact-container {
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: minmax(300px, 400px) 1fr;
   gap: 48px;
   position: relative;
   z-index: 1;
-}
   align-items: start;
 }
 
@@ -634,6 +635,8 @@ body {
   padding: 20px 0;
   border-bottom: 1px solid var(--border);
   align-items: start;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .info-item:last-of-type {
@@ -719,6 +722,7 @@ body {
 .form-group input,
 .form-group textarea {
   width: 100%;
+  max-width: 100%;
   padding: 14px 16px;
   border: 2px solid var(--border);
   border-radius: var(--radius-md);
@@ -727,6 +731,7 @@ body {
   color: var(--text-primary);
   transition: all 0.2s;
   background: var(--bg-secondary);
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -879,7 +884,24 @@ body {
 
   .contact-info-card,
   .contact-form {
-    padding: 28px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .contact-info-card,
+  .contact-form {
+    padding: 20px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 12px;
+    font-size: 16px;
   }
 }
 

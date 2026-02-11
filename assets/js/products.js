@@ -1,7 +1,8 @@
 // Public product listing script (reads 'products' collection and renders cards)
-const app_public = (firebase.apps && firebase.apps.length) ? firebase.app() : firebase.initializeApp(window.firebaseConfig);
-const db_public = firebase.firestore();
-const storage_public = firebase.storage();
+// Use existing Firebase app if already initialized
+const app_public = firebase.apps && firebase.apps.length ? firebase.app() : firebase.initializeApp(window.firebaseConfig);
+const db_public = app_public.firestore();
+const storage_public = app_public.storage();
 const container = document.getElementById('product-grid');
 const featuredContainer = document.getElementById('featured-grid');
 let publicUnsubscribe = null;
@@ -100,25 +101,40 @@ function createProductCard(doc, i) {
 }
 
 function loadFallback() {
-  try { const banner = document.getElementById('preview-banner'); if (banner) banner.hidden = false; } catch (e) {}
-  fetch('data/products.json').then(resp => resp.json()).then(data => {
-    container.innerHTML = '';
-    data.forEach((p, i) => {
-      const id = `local-${i}`;
-      const defaultImg = (p.images && p.images[0]) || `assets/images/bouquet${(i % 3) + 1}.svg`;
-      const card = document.createElement('article');
-      card.className = 'product-card';
-      card.style.animationDelay = `${i * 90}ms`;
-      card.innerHTML = `
-        <img src="${defaultImg}" alt="${p.title}">
-        <h3>${p.title}</h3>
-        <p>${p.description || ''}</p>
-        <div class="meta"><span class="price"><strong>$${(p.price_cents/100).toFixed(2)}</strong></span></div>
-        <div class="actions"><button data-id="${id}" class="order">Request Order</button></div>
-      `;
-      container.appendChild(card);
+  try {
+    const banner = document.getElementById('preview-banner');
+    if (banner) banner.hidden = false;
+  } catch (e) {
+    console.warn('Could not show preview banner:', e);
+  }
+
+  fetch('data/products.json')
+    .then(resp => resp.json())
+    .then(data => {
+      if (!container) return;
+      container.innerHTML = '';
+      data.forEach((p, i) => {
+        const id = `local-${i}`;
+        const defaultImg = (p.images && p.images[0]) || `assets/images/bouquet${(i % 3) + 1}.svg`;
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        card.style.animationDelay = `${i * 90}ms`;
+        card.innerHTML = `
+          <img src="${defaultImg}" alt="${p.title}">
+          <h3>${p.title}</h3>
+          <p>${p.description || ''}</p>
+          <div class="meta"><span class="price"><strong>$${(p.price_cents/100).toFixed(2)}</strong></span></div>
+          <div class="actions"><button data-id="${id}" class="order">Request Order</button></div>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      if (container) {
+        container.innerHTML = '<p class="muted">No products available. Configure Firebase or add sample products to <code>data/products.json</code>.</p>';
+      }
+      console.error('Failed to load local sample products:', err);
     });
-  }).catch(err => { container.innerHTML = '<p class="muted">No products available. Configure Firebase or add sample products to <code>data/products.json</code>.</p>'; console.error('Failed to load local sample products:', err); });
 }
 
 // Orders

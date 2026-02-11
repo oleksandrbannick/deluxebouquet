@@ -1,6 +1,6 @@
-const app_orders = firebase.initializeApp(window.firebaseConfig);
-const db_orders = firebase.firestore();
-const auth_orders = firebase.auth();
+const app_orders = firebase.apps && firebase.apps.length ? firebase.app() : firebase.initializeApp(window.firebaseConfig);
+const db_orders = app_orders.firestore();
+const auth_orders = app_orders.auth();
 
 auth_orders.onAuthStateChanged(async (user) => {
   if (!user) return window.location.href = 'login.html';
