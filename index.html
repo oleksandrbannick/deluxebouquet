@@ -76,43 +76,36 @@
     <section class="testimonials-section reveal" aria-labelledby="testimonials-heading">
       <div class="container">
         <div class="section-header">
-          <h2 id="testimonials-heading" class="section-title">What Our Customers Say</h2>
+          <h2 id="testimonials-heading" class="section-title">Customer Reviews</h2>
           <p class="section-subtitle">We love making people smile with beautiful flowers</p>
         </div>
-        <div class="testimonials-grid">
-          <div class="testimonial-card reveal-left">
-            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testimonial-text">The bouquet I ordered for my mother's birthday was absolutely stunning. She was so moved she cried happy tears! The flowers were fresh and the arrangement was gorgeous.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">S</div>
-              <div>
-                <div class="testimonial-name">Sarah M.</div>
-                <div class="testimonial-detail">Birthday bouquet</div>
-              </div>
+        <div id="reviews-grid" class="testimonials-grid"></div>
+        
+        <div class="review-form-container">
+          <h3>Share Your Experience</h3>
+          <form id="review-form" class="review-form">
+            <div class="form-group">
+              <label for="review-name">Your Name</label>
+              <input id="review-name" type="text" required placeholder="Jane Smith">
             </div>
-          </div>
-          <div class="testimonial-card reveal">
-            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testimonial-text">I've ordered from Deluxe Bouquet three times now and every arrangement has been unique and beautiful. The personal touch really shows. Highly recommend!</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">J</div>
-              <div>
-                <div class="testimonial-name">James K.</div>
-                <div class="testimonial-detail">Repeat customer</div>
-              </div>
+            <div class="form-group">
+              <label for="review-rating">Rating</label>
+              <select id="review-rating" required>
+                <option value="">Select rating</option>
+                <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                <option value="4">⭐⭐⭐⭐ Very Good</option>
+                <option value="3">⭐⭐⭐ Good</option>
+                <option value="2">⭐⭐ Fair</option>
+                <option value="1">⭐ Needs Improvement</option>
+              </select>
             </div>
-          </div>
-          <div class="testimonial-card reveal-right">
-            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="testimonial-text">Used Deluxe Bouquet for our wedding centerpieces. They exceeded every expectation. The flowers were fresh, vibrant, and perfectly matched our color palette.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">E</div>
-              <div>
-                <div class="testimonial-name">Emily R.</div>
-                <div class="testimonial-detail">Wedding flowers</div>
-              </div>
+            <div class="form-group">
+              <label for="review-text">Your Review</label>
+              <textarea id="review-text" rows="4" required placeholder="Tell us about your experience..."></textarea>
             </div>
-          </div>
+            <button type="submit" class="btn btn-primary btn-large">Submit Review</button>
+            <p class="muted small" style="margin-top: 12px;">Your review will appear immediately after submission.</p>
+          </form>
         </div>
       </div>
     </section>
@@ -197,6 +190,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
   <script src="admin/firebase-config.js"></script>
   <script src="assets/js/products.js"></script>
+  <script src="assets/js/reviews.js"></script>
   <script src="assets/js/contact.js"></script>
   <script src="assets/js/site.js"></script>
 </body>

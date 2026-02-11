@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Deluxe Bouquet — Manage Reviews</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="admin-header container">
+    <div class="brand">
+      <h1>Review Manager</h1>
+      <p class="muted">Manage customer reviews</p>
+    </div>
+    <nav class="admin-nav">
+      <a href="index.html" class="btn btn-back">← Back to Catalog</a>
+      <button id="signout-btn" class="btn">Sign Out</button>
+    </nav>
+  </header>
+
+  <main class="container" style="max-width: 1000px; padding-top: 40px;">
+    <section class="admin-products">
+      <h2>All Reviews</h2>
+      <div id="reviews-list" class="products-list"></div>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    // Auth check
+    if (!window.firebaseConfig || !window.firebaseConfig.projectId) {
+      alert('Missing Firebase config');
+      throw new Error('Missing Firebase config');
+    }
+
+    const app = firebase.initializeApp(window.firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    let currentUser = null;
+
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+      currentUser = user;
+      
+      // Check if user is admin
+      try {
+        const adminDoc = await db.collection('admins').doc(user.uid).get();
+        if (!adminDoc.exists) {
+          alert('Your account is not an admin. Contact the site owner.');
+          auth.signOut();
+          return;
+        }
+        loadReviews();
+      } catch (err) {
+        console.error('Error checking admin status:', err);
+        alert('Error verifying admin status');
+      }
+    });
+
+    // Sign out
+    document.getElementById('signout-btn').addEventListener('click', () => {
+      auth.signOut().then(() => window.location.href = 'login.html');
+    });
+
+    // Load all reviews
+    async function loadReviews() {
+      const list = document.getElementById('reviews-list');
+      list.innerHTML = '<p class="muted">Loading reviews...</p>';
+
+      try {
+        const snapshot = await db.collection('reviews')
+          .orderBy('createdAt', 'desc')
+          .get();
+
+        if (snapshot.empty) {
+          list.innerHTML = '<p class="muted">No reviews yet.</p>';
+          return;
+        }
+
+        list.innerHTML = '';
+        snapshot.forEach(doc => {
+          const review = doc.data();
+          const row = createReviewRow(doc.id, review);
+          list.appendChild(row);
+        });
+      } catch (err) {
+        console.error('Error loading reviews:', err);
+        list.innerHTML = '<p style="color: red;">Error loading reviews: ' + err.message + '</p>';
+      }
+    }
+
+    // Create review row
+    function createReviewRow(id, review) {
+      const row = document.createElement('div');
+      row.className = 'product-row';
+      
+      const stars = '⭐'.repeat(review.rating);
+      const date = review.createdAt ? new Date(review.createdAt.toDate()).toLocaleString() : 'Unknown date';
+      
+      row.innerHTML = `
+        <div class="product-row-inner">
+          <div class="product-info">
+            <strong>${escapeHtml(review.name)}</strong>
+            <div style="color: #f59e0b; margin: 4px 0;">${stars}</div>
+            <p style="margin: 8px 0;">${escapeHtml(review.text)}</p>
+            <small class="muted">${date}</small>
+          </div>
+          <div class="product-actions">
+            <button class="btn delete" onclick="deleteReview('${id}')">Delete</button>
+          </div>
+        </div>
+      `;
+      return row;
+    }
+
+    // Delete review
+    window.deleteReview = async function(id) {
+      if (!confirm('Delete this review? This cannot be undone.')) return;
+      
+      try {
+        await db.collection('reviews').doc(id).delete();
+        loadReviews();
+      } catch (err) {
+        console.error('Error deleting review:', err);
+        alert('Error deleting review: ' + err.message);
+      }
+    };
+
+    // Escape HTML
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>
