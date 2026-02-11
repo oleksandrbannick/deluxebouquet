@@ -7,15 +7,31 @@
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-  <main class="container">
-    <h1>Admin Login</h1>
-    <form id="login-form">
-      <label>Email <input id="email" type="email" required></label>
-      <label>Password <input id="password" type="password" required></label>
-      <button type="submit">Sign In</button>
-    </form>
-    <p id="message"></p>
-    <p>Need an account? Create one and then ask the developer to add your UID to the <code>admins</code> collection. <a href="onboarding.html">Need help? See the onboarding guide.</a></p>
+  <header class="admin-header">
+    <div class="header-content">
+      <div class="brand">
+        <h1>Deluxe Bouquet</h1>
+        <p class="tag">Admin Access</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="max-width: 500px; margin-top: 80px;">
+    <div class="admin-panel">
+      <h2 style="text-align: center; margin-bottom: 32px;">Sign In</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input id="email" type="email" required placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" required placeholder="Enter your password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Sign In</button>
+      </form>
+      <p id="message" style="color: var(--accent); margin-top: 16px; text-align: center;"></p>
+    </div>
   </main>
 
   <!-- Firebase SDKs -->
