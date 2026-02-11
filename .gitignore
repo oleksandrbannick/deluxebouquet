@@ -4,5 +4,17 @@
 # macOS
 .DS_Store
 
-# Node (if used later)
+# Node
 node_modules/
+npm-debug.log
+yarn-error.log
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Environment variables
+.env
+.env.local
