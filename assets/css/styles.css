@@ -1607,9 +1607,11 @@ body {
   .back-to-top {
     bottom: 20px;
     right: 20px;
-    width: 44px;
-    height: 44px;
-    font-size: 18px;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .site-header.scrolled .brand h1 {
