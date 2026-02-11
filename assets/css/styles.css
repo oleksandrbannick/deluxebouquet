@@ -619,6 +619,8 @@ body {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   border-top: 4px solid var(--accent);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .contact-info-card h3 {
@@ -705,6 +707,8 @@ body {
   padding: 40px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group {
@@ -890,18 +894,28 @@ body {
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 16px;
+    padding: 0 12px;
+  }
+
+  .contact-section .container {
+    padding: 0 8px;
   }
 
   .contact-info-card,
   .contact-form {
-    padding: 20px;
+    padding: 16px;
+    border-radius: var(--radius-sm);
+  }
+
+  .form-group {
+    margin-bottom: 16px;
   }
 
   .form-group input,
   .form-group textarea {
-    padding: 12px;
+    padding: 10px 12px;
     font-size: 16px;
+    border-radius: var(--radius-sm);
   }
 }
 
